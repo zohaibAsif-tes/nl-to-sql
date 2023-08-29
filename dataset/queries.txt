@@ -1,0 +1,479 @@
+Pair 1:
+SQL Query: SELECT product_name, price FROM products WHERE category = 'Electronics' ORDER BY price DESC;
+NL Description: Retrieve the names and prices of electronics products, sorted by price in descending order.
+
+Pair 2:
+SQL Query: SELECT COUNT(*) FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-06-30';
+NL Description: Count the number of orders placed between January 1st, 2023, and June 30th, 2023.
+
+Pair 3:
+SQL Query: SELECT customer_name, SUM(order_total) FROM customers JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customer_name;
+NL Description: Calculate the total order amount for each customer by joining the customer and order tables.
+
+Pair 4:
+SQL Query: SELECT DISTINCT category FROM products;
+NL Description: Retrieve a list of distinct product categories available in the store.
+
+Pair 5:
+SQL Query: UPDATE employees SET salary = salary * 1.1 WHERE department = 'HR';
+NL Description: Increase the salary of all employees in the HR department by 10%.
+
+Pair 6:
+SQL Query: DELETE FROM customers WHERE last_purchase_date < '2022-01-01';
+NL Description: Remove customer records for those who made their last purchase before January 1st, 2022.
+
+Pair 7:
+SQL Query: SELECT product_name, AVG(rating) FROM products JOIN reviews ON products.product_id = reviews.product_id GROUP BY product_name;
+NL Description: Find the average rating for each product by joining the product and reviews tables.
+
+Pair 8:
+SQL Query: SELECT customer_name, order_date FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE order_date > '2023-03-01';
+NL Description: Retrieve the names of customers and the dates of orders placed after March 1st, 2023.
+
+Pair 9:
+SQL Query: INSERT INTO products (product_name, price, category) VALUES ('Smartphone', 799.99, 'Electronics');
+NL Description: Add a new product named 'Smartphone' to the Electronics category with a price of $799.99.
+
+Pair 10:
+SQL Query: SELECT employee_name, job_title FROM employees WHERE department = 'Sales' AND salary > 50000;
+NL Description: Retrieve the names and job titles of employees in the Sales department who have a salary greater than $50,000.
+
+Pair 11:
+SQL Query: SELECT customer_name, COUNT(order_id) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customer_name HAVING COUNT(order_id) > 3;
+NL Description: Retrieve the names of customers who have placed more than 3 orders, including customers with no orders, using a left join between customers and orders.
+
+Pair 12:
+SQL Query: SELECT category, AVG(price) FROM products WHERE EXISTS (SELECT * FROM orders WHERE products.product_id = orders.product_id) GROUP BY category;
+NL Description: Calculate the average price of products in each category where there are associated orders, using a subquery with EXISTS.
+
+Pair 13:
+SQL Query: SELECT employee_name, job_title, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees WHERE job_title = 'Manager');
+NL Description: Retrieve the names, job titles, and salaries of employees who earn more than the average salary of managers, utilizing a subquery for comparison.
+
+Pair 14:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE order_date BETWEEN '2022-01-01' AND '2022-12-31' GROUP BY customer_name;
+NL Description: Count the number of distinct orders made by each customer within the year 2022, using a join between customers and orders and filtering by date range.
+
+Pair 15:
+SQL Query: SELECT product_name, SUM(quantity) FROM products JOIN order_details ON products.product_id = order_details.product_id GROUP BY product_name HAVING SUM(quantity) > 100;
+NL Description: Sum up the quantities ordered for each product, and only show products with a total quantity ordered greater than 100, utilizing a join and a group with having clause.
+
+Pair 16:
+SQL Query: SELECT department, AVG(salary) FROM employees WHERE job_title = 'Manager' GROUP BY department HAVING COUNT(employee_id) >= 2;
+NL Description: Calculate the average salary for each department that has at least 2 managers, filtering employees by job title and applying the HAVING clause.
+
+Pair 17:
+SQL Query: SELECT customer_name, order_date FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE EXISTS (SELECT * FROM products WHERE products.product_id = orders.product_id AND category = 'Electronics');
+NL Description: Retrieve the names of customers and the dates of orders where at least one order includes products from the Electronics category, using a subquery with EXISTS.
+
+Pair 18:
+SQL Query: SELECT employee_name, MAX(salary) FROM employees WHERE salary < (SELECT AVG(salary) FROM employees) GROUP BY employee_name;
+NL Description: Find the maximum salary for each employee who earns less than the average salary of all employees, using a subquery for comparison.
+
+Pair 19:
+SQL Query: SELECT category, SUM(price) FROM products GROUP BY category HAVING SUM(price) > (SELECT AVG(price) FROM products);
+NL Description: Sum up the prices of products in each category and display only categories where the total price is greater than the average price of all products.
+
+Pair 20:
+SQL Query: SELECT department, COUNT(DISTINCT employee_id) FROM employees WHERE salary > (SELECT MAX(salary) FROM employees WHERE department = 'HR') GROUP BY department;
+NL Description: Count the number of distinct employees with salaries higher than the highest salary in the HR department, for each department, using a subquery for comparison.
+
+Pair 21:
+SQL Query: SELECT customer_name, SUM(order_total) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customer_name HAVING SUM(order_total) > (SELECT AVG(order_total) FROM orders);
+NL Description: Calculate the total order amount for each customer, including those with no orders, and show customers whose total order amount is higher than the average order total.
+
+Pair 22:
+SQL Query: SELECT product_name, category, COUNT(DISTINCT order_id) FROM products LEFT JOIN order_details ON products.product_id = order_details.product_id GROUP BY product_name, category;
+NL Description: Retrieve the product name, category, and count of distinct orders placed for each product, including those with no orders, using a left join between products and order_details.
+
+Pair 23:
+SQL Query: SELECT department, COUNT(DISTINCT employee_id) FROM employees WHERE EXISTS (SELECT * FROM orders WHERE employees.employee_id = orders.employee_id AND order_date BETWEEN '2023-01-01' AND '2023-12-31') GROUP BY department;
+NL Description: Count the number of distinct employees in each department who have taken orders between January 1st, 2023, and December 31st, 2023, using a subquery with EXISTS.
+
+Pair 24:
+SQL Query: SELECT product_name, AVG(rating) FROM products LEFT JOIN reviews ON products.product_id = reviews.product_id WHERE EXISTS (SELECT * FROM orders WHERE products.product_id = orders.product_id AND order_date > '2023-06-01') GROUP BY product_name;
+NL Description: Calculate the average rating for each product that has been ordered after June 1st, 2023, and show products even if they have no reviews, using a subquery with EXISTS.
+
+Pair 25:
+SQL Query: SELECT department, COUNT(DISTINCT employee_id) FROM employees WHERE NOT EXISTS (SELECT * FROM orders WHERE employees.employee_id = orders.employee_id AND order_date > '2023-03-01') GROUP BY department HAVING COUNT(DISTINCT employee_id) >= 2;
+NL Description: Count the number of distinct employees in each department who have not taken orders after March 1st, 2023, and show departments with at least 2 such employees, using a subquery with NOT EXISTS and a HAVING clause.
+
+Pair 26:
+SQL Query: SELECT employee_name, job_title FROM employees WHERE employee_id IN (SELECT DISTINCT employee_id FROM orders WHERE order_date BETWEEN '2022-01-01' AND '2022-12-31');
+NL Description: Retrieve the names and job titles of employees whose IDs appear in the list of distinct employee IDs associated with orders placed between January 1st, 2022, and December 31st, 2022, using a subquery with IN.
+
+Pair 27:
+SQL Query: SELECT department, MAX(salary) FROM employees WHERE NOT EXISTS (SELECT * FROM employees WHERE department = 'HR' AND salary > 100000) GROUP BY department;
+NL Description: Find the maximum salary for each department where there are no employees in the HR department earning more than $100,000, using a subquery with NOT EXISTS.
+
+Pair 28:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers WHERE customer_id IN (SELECT customer_id FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-06-30') GROUP BY customer_name;
+NL Description: Count the number of distinct orders made by each customer whose IDs appear in the list of customer IDs associated with orders placed between January 1st, 2023, and June 30th, 2023, using a subquery with IN.
+
+Pair 29:
+SQL Query: SELECT product_name, SUM(quantity) FROM products WHERE product_id IN (SELECT DISTINCT product_id FROM order_details WHERE order_id IN (SELECT order_id FROM orders WHERE order_date > '2023-04-01')) GROUP BY product_name;
+NL Description: Sum up the quantities ordered for each product whose IDs appear in the list of product IDs associated with order details for orders placed after April 1st, 2023, using nested subqueries with IN.
+
+Pair 30:
+SQL Query: SELECT employee_name, AVG(salary) FROM employees WHERE employee_id NOT IN (SELECT DISTINCT employee_id FROM orders WHERE order_date < '2023-01-01') GROUP BY employee_name;
+NL Description: Calculate the average salary for each employee whose IDs do not appear in the list of distinct employee IDs associated with orders placed before January 1st, 2023, using a subquery with NOT IN.
+
+Pair 31:
+SQL Query: SELECT department, AVG(salary) FROM employees WHERE department != 'HR' AND salary > (SELECT AVG(salary) FROM employees WHERE department = 'HR') GROUP BY department;
+NL Description: Calculate the average salary for each department excluding HR, where salaries are higher than the average salary in the HR department.
+
+Pair 32:
+SQL Query: SELECT customer_name, MAX(order_total) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id WHERE order_date > '2023-01-01' GROUP BY customer_name;
+NL Description: Find the maximum order total for each customer who has placed orders after January 1st, 2023, even if there are no orders, using a left join between customers and orders.
+
+Pair 33:
+SQL Query: SELECT employee_name, COUNT(DISTINCT order_id) FROM employees LEFT JOIN orders ON employees.employee_id = orders.employee_id GROUP BY employee_name HAVING COUNT(DISTINCT order_id) > 2;
+NL Description: Count the number of distinct orders taken by each employee, including those with no orders, and show employees who have more than 2 orders, using a left join and a HAVING clause.
+
+Pair 34:
+SQL Query: SELECT department, AVG(salary) FROM employees WHERE salary > (SELECT AVG(salary) FROM employees WHERE department = 'Manager') GROUP BY department HAVING COUNT(DISTINCT employee_id) > 1;
+NL Description: Calculate the average salary for each department with more than one employee earning higher than the average salary of managers, using a subquery and a HAVING clause.
+
+Pair 35:
+SQL Query: SELECT product_name, COUNT(DISTINCT order_id) FROM products LEFT JOIN order_details ON products.product_id = order_details.product_id GROUP BY product_name HAVING COUNT(DISTINCT order_id) > (SELECT AVG(order_id) FROM order_details);
+NL Description: Count the number of distinct orders placed for each product, including those with no orders, and show products with more orders than the average number of orders in the order details table.
+
+Pair 36:
+SQL Query: SELECT department, COUNT(employee_id) FROM employees GROUP BY department HAVING COUNT(employee_id) > (SELECT COUNT(employee_id) FROM employees WHERE department = 'HR');
+NL Description: Count the number of employees in each department and show departments with more employees than the number of employees in the HR department, using a subquery and a HAVING clause.
+
+Pair 37:
+SQL Query: SELECT customer_name, SUM(order_total) FROM customers WHERE customer_id IN (SELECT customer_id FROM orders WHERE order_date BETWEEN '2023-04-01' AND '2023-09-30') GROUP BY customer_name;
+NL Description: Calculate the total order amount for each customer whose IDs appear in the list of customer IDs associated with orders placed between April 1st, 2023, and September 30th, 2023, using a subquery with IN.
+
+Pair 38:
+SQL Query: SELECT employee_name, COUNT(DISTINCT order_id) FROM employees WHERE employee_id NOT IN (SELECT employee_id FROM orders WHERE order_date < '2022-01-01') GROUP BY employee_name HAVING COUNT(DISTINCT order_id) > (SELECT AVG(order_id) FROM orders);
+NL Description: Count the number of distinct orders taken by each employee who has not taken orders before January 1st, 2022, and show employees with more orders than the average number of orders.
+
+Pair 39:
+SQL Query: SELECT product_name, AVG(rating) FROM products WHERE product_id NOT IN (SELECT product_id FROM reviews WHERE rating < 4) GROUP BY product_name;
+NL Description: Calculate the average rating for each product that does not have any reviews with a rating lower than 4, using a subquery with NOT IN.
+
+Pair 40:
+SQL Query: SELECT customer_name, MAX(order_date) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customer_name HAVING MAX(order_date) < (SELECT MIN(order_date) FROM orders);
+NL Description: Find the maximum order date for each customer who has placed orders, even if there are no orders, and show customers whose maximum order date is earlier than the minimum order date in the orders table.
+
+Pair 41:
+SQL Query: SELECT shipment_id, status FROM shipments WHERE origin_city = 'New York' AND destination_city = 'Los Angeles';
+NL Description: Retrieve the shipment IDs and statuses for shipments originating from New York and destined for Los Angeles.
+
+Pair 42:
+SQL Query: SELECT order_id, customer_name, total_amount FROM orders JOIN customers ON orders.customer_id = customers.customer_id WHERE order_date > '2023-01-01';
+NL Description: Retrieve the order IDs, customer names, and total order amounts for orders placed after January 1st, 2023, along with the corresponding customer information.
+
+Pair 43:
+SQL Query: SELECT product_name, SUM(quantity) FROM products JOIN order_details ON products.product_id = order_details.product_id WHERE supplier = 'SupplierX' GROUP BY product_name;
+NL Description: Sum up the quantities ordered for each product supplied by SupplierX and show the product names along with the total quantity ordered.
+
+Pair 44:
+SQL Query: SELECT driver_name, AVG(delivery_time) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id GROUP BY driver_name;
+NL Description: Calculate the average delivery time for each driver, even for drivers who haven't made any deliveries, using a left join between drivers and deliveries.
+
+Pair 45:
+SQL Query: SELECT warehouse_id, COUNT(DISTINCT shipment_id) FROM warehouses LEFT JOIN shipments ON warehouses.warehouse_id = shipments.origin_warehouse_id GROUP BY warehouse_id;
+NL Description: Count the number of distinct shipments originating from each warehouse, even for warehouses with no shipments, using a left join between warehouses and shipments.
+
+Pair 46:
+SQL Query: UPDATE shipments SET status = 'In Transit' WHERE origin_city = 'Chicago' AND destination_city = 'Houston';
+NL Description: Update the status of shipments originating from Chicago and destined for Houston to 'In Transit'.
+
+Pair 47:
+SQL Query: SELECT order_id, COUNT(DISTINCT product_id) FROM order_details GROUP BY order_id HAVING COUNT(DISTINCT product_id) > 5;
+NL Description: Count the number of distinct products ordered for each order and show orders with more than 5 distinct products.
+
+Pair 48:
+SQL Query: SELECT employee_name, COUNT(DISTINCT delivery_id) FROM employees LEFT JOIN drivers ON employees.employee_id = drivers.employee_id LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id GROUP BY employee_name;
+NL Description: Count the number of distinct deliveries made by each employee, including drivers and employees with no deliveries, using multiple joins.
+
+Pair 49:
+SQL Query: SELECT supplier_name, AVG(price) FROM products JOIN suppliers ON products.supplier_id = suppliers.supplier_id GROUP BY supplier_name HAVING AVG(price) > (SELECT AVG(price) FROM products);
+NL Description: Calculate the average price of products supplied by each supplier, showing suppliers with an average price higher than the overall average price of products.
+
+Pair 50:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id LEFT JOIN orders ON deliveries.order_id = orders.order_id WHERE orders.order_date > '2023-05-01' GROUP BY driver_name;
+NL Description: Count the number of distinct orders delivered by each driver for orders placed after May 1st, 2023, using multiple joins.
+
+Pair 51:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE delivery_date > (SELECT MIN(delivery_date) FROM deliveries WHERE driver_id = drivers.driver_id) GROUP BY driver_name;
+NL Description: Calculate the average delivery distance for each driver, considering only deliveries made after their first delivery, using a left join and a subquery for comparison.
+
+Pair 52:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses LEFT JOIN products ON warehouses.warehouse_id = products.warehouse_id WHERE product_category = 'Electronics' GROUP BY warehouse_name;
+NL Description: Count the number of distinct electronics products stored in each warehouse and show warehouse names along with the count, using a left join and a filter condition.
+
+Pair 53:
+SQL Query: SELECT supplier_name, COUNT(DISTINCT product_id) FROM suppliers LEFT JOIN products ON suppliers.supplier_id = products.supplier_id WHERE NOT EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id) GROUP BY supplier_name;
+NL Description: Count the number of distinct products supplied by each supplier for which no orders exist, using a left join and a subquery with NOT EXISTS.
+
+Pair 54:
+SQL Query: SELECT customer_name, SUM(total_amount) FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE EXISTS (SELECT * FROM deliveries WHERE deliveries.order_id = orders.order_id AND delivery_date BETWEEN '2023-04-01' AND '2023-09-30') GROUP BY customer_name;
+NL Description: Calculate the total amount spent by each customer for orders that have corresponding deliveries between April 1st, 2023, and September 30th, 2023, using a join and a subquery with EXISTS.
+
+Pair 55:
+SQL Query: SELECT product_name, AVG(delivery_distance) FROM products JOIN deliveries ON products.product_id = deliveries.product_id WHERE delivery_date > '2023-02-01' GROUP BY product_name HAVING AVG(delivery_distance) > (SELECT AVG(delivery_distance) FROM deliveries);
+NL Description: Calculate the average delivery distance for each product based on deliveries made after February 1st, 2023, and show product names with an average distance greater than the overall average distance of deliveries.
+
+Pair 56:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE delivery_date > '2023-03-01' AND delivery_date < '2023-06-01' GROUP BY driver_name HAVING COUNT(DISTINCT order_id) > (SELECT COUNT(DISTINCT order_id) FROM deliveries WHERE driver_id = drivers.driver_id AND delivery_date > '2023-06-01');
+NL Description: Count the number of distinct orders delivered by each driver between March 1st, 2023, and May 31st, 2023, and show drivers with more orders than they've delivered after June 1st, 2023, using a left join and subqueries for filtering and comparison.
+
+Pair 57:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id WHERE order_date > (SELECT MAX(order_date) FROM orders WHERE customer_id = customers.customer_id) GROUP BY customer_name;
+NL Description: Count the number of distinct orders placed by each customer, including those with no orders, for orders placed after their most recent order, using a left join and a subquery for comparison.
+
+Pair 58:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE EXISTS (SELECT * FROM orders WHERE orders.order_id = deliveries.order_id AND order_date > '2023-05-01') GROUP BY driver_name HAVING AVG(delivery_distance) > (SELECT AVG(delivery_distance) FROM deliveries);
+NL Description: Calculate the average delivery distance for each driver who has made deliveries for orders placed after May 1st, 2023, and show drivers with an average distance greater than the overall average distance of deliveries.
+
+Pair 59:
+SQL Query: SELECT supplier_name, COUNT(DISTINCT product_id) FROM suppliers LEFT JOIN products ON suppliers.supplier_id = products.supplier_id WHERE EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id AND quantity > 10) GROUP BY supplier_name;
+NL Description: Count the number of distinct products supplied by each supplier for which there are orders with quantities greater than 10, using a left join and a subquery with EXISTS.
+
+Pair 60:
+SQL Query: SELECT warehouse_name, SUM(quantity) FROM warehouses JOIN products ON warehouses.warehouse_id = products.warehouse_id WHERE NOT EXISTS (SELECT * FROM deliveries WHERE deliveries.product_id = products.product_id) GROUP BY warehouse_name;
+NL Description: Sum up the quantities of products stored in each warehouse for which no deliveries have been made, using a join and a subquery with NOT EXISTS.
+
+Pair 61:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id WHERE NOT EXISTS (SELECT * FROM deliveries WHERE deliveries.order_id = orders.order_id AND delivery_status = 'Delivered') GROUP BY customer_name;
+NL Description: Count the number of distinct orders placed by each customer for which there are no corresponding deliveries with a 'Delivered' status, using a left join and a subquery with NOT EXISTS.
+
+Pair 62:
+SQL Query: SELECT product_name, SUM(quantity) FROM products JOIN order_details ON products.product_id = order_details.product_id WHERE EXISTS (SELECT * FROM deliveries WHERE deliveries.product_id = products.product_id AND delivery_date BETWEEN '2023-01-01' AND '2023-06-30') GROUP BY product_name;
+NL Description: Sum up the quantities ordered for each product that has corresponding deliveries made between January 1st, 2023, and June 30th, 2023, and show product names along with the total quantity ordered, using a join and a subquery with EXISTS.
+
+Pair 63:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses LEFT JOIN products ON warehouses.warehouse_id = products.warehouse_id WHERE product_category = 'Clothing' GROUP BY warehouse_name HAVING COUNT(DISTINCT product_id) > (SELECT COUNT(DISTINCT product_id) FROM products WHERE product_category = 'Electronics');
+NL Description: Count the number of distinct clothing products stored in each warehouse and show warehouse names for warehouses with more clothing products than electronics products, using a left join, filtering, and subqueries for comparison.
+
+Pair 64:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE driver_id IN (SELECT driver_id FROM deliveries GROUP BY driver_id HAVING COUNT(DISTINCT order_id) > 5) GROUP BY driver_name;
+NL Description: Calculate the average delivery distance for each driver whose IDs appear in the list of driver IDs associated with more than 5 distinct orders, using a left join and nested subqueries with IN and GROUP BY.
+
+Pair 65:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers WHERE customer_id NOT IN (SELECT customer_id FROM orders WHERE order_date < '2023-01-01') GROUP BY customer_name HAVING COUNT(DISTINCT order_id) > (SELECT COUNT(DISTINCT order_id) FROM orders WHERE order_date >= '2023-01-01');
+NL Description: Count the number of distinct orders placed by each customer who hasn't placed orders before January 1st, 2023, and show customers with more orders than they've placed on or after January 1st, 2023, using a subquery and a HAVING clause.
+
+Pair 66:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses WHERE warehouse_id NOT IN (SELECT origin_warehouse_id FROM shipments WHERE shipment_date < '2023-04-01') GROUP BY warehouse_name;
+NL Description: Count the number of distinct products stored in each warehouse that hasn't been used as the origin warehouse for shipments before April 1st, 2023, using a subquery and a HAVING clause.
+
+Pair 67:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers WHERE driver_id IN (SELECT driver_id FROM deliveries WHERE delivery_status = 'Delivered' GROUP BY driver_id HAVING AVG(delivery_distance) > 50) GROUP BY driver_name;
+NL Description: Calculate the average delivery distance for each driver whose IDs appear in the list of driver IDs associated with deliveries having an average distance greater than 50, using a subquery and a HAVING clause.
+
+Pair 68:
+SQL Query: SELECT customer_name, SUM(total_amount) FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE customer_id NOT IN (SELECT customer_id FROM deliveries WHERE delivery_date > '2023-03-01') GROUP BY customer_name;
+NL Description: Calculate the total amount spent by each customer who hasn't received deliveries after March 1st, 2023, and show customer names along with the total amount spent, using a join and a subquery.
+
+Pair 69:
+SQL Query: SELECT supplier_name, COUNT(DISTINCT product_id) FROM suppliers LEFT JOIN products ON suppliers.supplier_id = products.supplier_id WHERE EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id AND quantity >= 100) GROUP BY supplier_name;
+NL Description: Count the number of distinct products supplied by each supplier for which there are orders with quantities greater than or equal to 100, using a left join and a subquery with EXISTS.
+
+Pair 70:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers WHERE driver_id NOT IN (SELECT driver_id FROM deliveries WHERE delivery_date BETWEEN '2023-01-01' AND '2023-06-30') GROUP BY driver_name;
+NL Description: Calculate the average delivery distance for each driver who hasn't made deliveries between January 1st, 2023, and June 30th, 2023, and show driver names along with the average distance, using a subquery and a GROUP BY clause.
+
+Pair 71:
+SQL Query: SELECT customer_name, AVG(total_amount) FROM customers JOIN orders ON customers.customer_id = orders.customer_id WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31' GROUP BY customer_name;
+NL Description: Calculate the average order amount for each customer who placed orders between January 1st, 2023, and December 31st, 2023.
+
+Pair 72:
+SQL Query: SELECT product_name, COUNT(DISTINCT order_id) FROM products JOIN order_details ON products.product_id = order_details.product_id WHERE product_category = 'Electronics' GROUP BY product_name;
+NL Description: Count the number of distinct orders placed for each electronics product using the order details table.
+
+Pair 73:
+SQL Query: SELECT warehouse_name, AVG(available_quantity) FROM warehouses LEFT JOIN products ON warehouses.warehouse_id = products.warehouse_id GROUP BY warehouse_name;
+NL Description: Calculate the average available quantity of products for each warehouse, even for warehouses with no products.
+
+Pair 74:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id LEFT JOIN orders ON deliveries.order_id = orders.order_id WHERE orders.order_date > '2023-01-01' GROUP BY driver_name;
+NL Description: Count the number of distinct orders delivered by each driver for orders placed after January 1st, 2023, even for drivers with no deliveries.
+
+Pair 75:
+SQL Query: SELECT supplier_name, COUNT(DISTINCT product_id) FROM suppliers LEFT JOIN products ON suppliers.supplier_id = products.supplier_id GROUP BY supplier_name HAVING COUNT(DISTINCT product_id) >= 5;
+NL Description: Count the number of distinct products supplied by each supplier and show suppliers with at least 5 distinct products.
+
+Pair 76:
+SQL Query: SELECT warehouse_name, MAX(available_quantity) FROM warehouses LEFT JOIN products ON warehouses.warehouse_id = products.warehouse_id WHERE product_category = 'Clothing' GROUP BY warehouse_name;
+NL Description: Find the maximum available quantity of clothing products in each warehouse using a left join.
+
+Pair 77:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE delivery_date BETWEEN '2023-04-01' AND '2023-09-30' GROUP BY driver_name;
+NL Description: Count the number of distinct orders delivered by each driver for deliveries made between April 1st, 2023, and September 30th, 2023.
+
+Pair 78:
+SQL Query: SELECT customer_name, SUM(total_amount) FROM customers WHERE customer_id IN (SELECT customer_id FROM orders WHERE order_date > '2023-06-01') GROUP BY customer_name;
+NL Description: Calculate the total amount spent by each customer who placed orders after June 1st, 2023, using a subquery with IN.
+
+Pair 79:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses WHERE warehouse_id NOT IN (SELECT DISTINCT origin_warehouse_id FROM shipments) GROUP BY warehouse_name;
+NL Description: Count the number of distinct products stored in each warehouse that hasn't been used as the origin warehouse for any shipments.
+
+Pair 80:
+SQL Query: SELECT supplier_name, AVG(price) FROM suppliers JOIN products ON suppliers.supplier_id = products.supplier_id WHERE EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id AND quantity >= 50) GROUP BY supplier_name;
+NL Description: Calculate the average price of products supplied by each supplier for which there are orders with quantities greater than or equal to 50, using a join and a subquery with EXISTS.
+
+Pair 81:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses WHERE warehouse_id IN (SELECT DISTINCT destination_warehouse_id FROM shipments WHERE shipment_date > '2023-03-01') GROUP BY warehouse_name;
+NL Description: Count the number of distinct products stored in each warehouse that has been used as the destination warehouse for shipments after March 1st, 2023.
+
+Pair 82:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers WHERE driver_id IN (SELECT DISTINCT driver_id FROM deliveries WHERE delivery_date BETWEEN '2023-04-01' AND '2023-06-30') GROUP BY driver_name;
+NL Description: Calculate the average delivery distance for each driver who has made deliveries between April 1st, 2023, and June 30th, 2023, using a subquery with IN.
+
+Pair 83:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id WHERE NOT EXISTS (SELECT * FROM deliveries WHERE deliveries.order_id = orders.order_id AND delivery_date > '2023-09-30') GROUP BY customer_name;
+NL Description: Count the number of distinct orders placed by each customer for which there are no corresponding deliveries made after September 30th, 2023, using a left join and a subquery with NOT EXISTS.
+
+Pair 84:
+SQL Query: SELECT supplier_name, AVG(price) FROM suppliers JOIN products ON suppliers.supplier_id = products.supplier_id WHERE supplier_id IN (SELECT supplier_id FROM products WHERE product_category = 'Electronics') GROUP BY supplier_name;
+NL Description: Calculate the average price of products supplied by each supplier that supplies electronics products, using a join and a subquery with IN.
+
+Pair 85:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE delivery_status = 'Pending' GROUP BY driver_name HAVING COUNT(DISTINCT order_id) >= 3;
+NL Description: Count the number of distinct orders assigned to each driver with a 'Pending' delivery status and show drivers with at least 3 such orders, using a left join, grouping, and a HAVING clause.
+
+Pair 86:
+SQL Query: SELECT product_name, SUM(quantity) FROM products WHERE product_id NOT IN (SELECT product_id FROM order_details WHERE order_id IN (SELECT order_id FROM orders WHERE order_date < '2023-01-01')) GROUP BY product_name;
+NL Description: Sum up the quantities of products that haven't been ordered before January 1st, 2023, and show product names along with the total quantity.
+
+Pair 87:
+SQL Query: SELECT warehouse_name, AVG(available_quantity) FROM warehouses JOIN products ON warehouses.warehouse_id = products.warehouse_id WHERE product_category = 'Food' GROUP BY warehouse_name;
+NL Description: Calculate the average available quantity of food products for each warehouse using a join and a filter on product category.
+
+Pair 88:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers WHERE driver_id NOT IN (SELECT driver_id FROM deliveries WHERE delivery_date < '2023-07-01') GROUP BY driver_name;
+NL Description: Count the number of distinct orders assigned to each driver who hasn't made deliveries before July 1st, 2023, and show driver names along with the count.
+
+Pair 89:
+SQL Query: SELECT supplier_name, MAX(price) FROM suppliers JOIN products ON suppliers.supplier_id = products.supplier_id WHERE EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id AND quantity >= 20) GROUP BY supplier_name;
+NL Description: Find the maximum price of products supplied by each supplier for which there are orders with quantities greater than or equal to 20, using a join and a subquery with EXISTS.
+
+Pair 90:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses WHERE warehouse_id NOT IN (SELECT DISTINCT destination_warehouse_id FROM shipments WHERE shipment_date BETWEEN '2023-02-01' AND '2023-05-31') GROUP BY warehouse_name;
+NL Description: Count the number of distinct products stored in each warehouse that hasn't been used as the destination warehouse for shipments between February 1st, 2023, and May 31st, 2023.
+
+Pair 91:
+SQL Query: SELECT supplier_name, AVG(price) FROM suppliers JOIN products ON suppliers.supplier_id = products.supplier_id WHERE supplier_id IN (SELECT supplier_id FROM products WHERE product_category = 'Electronics') GROUP BY supplier_name HAVING AVG(price) > (SELECT AVG(price) FROM products WHERE product_category = 'Electronics');
+NL Description: Calculate the average price of electronics products supplied by each supplier and show suppliers with an average price higher than the overall average price of electronics products.
+
+Pair 92:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses WHERE warehouse_id NOT IN (SELECT DISTINCT destination_warehouse_id FROM shipments WHERE shipment_date BETWEEN '2023-02-01' AND '2023-05-31') GROUP BY warehouse_name HAVING COUNT(DISTINCT product_id) > (SELECT AVG(products_per_warehouse) FROM (SELECT warehouse_id, COUNT(DISTINCT product_id) AS products_per_warehouse FROM warehouses GROUP BY warehouse_id) AS warehouse_counts);
+NL Description: Count the number of distinct products stored in each warehouse that hasn't been used as the destination warehouse for shipments between February 1st, 2023, and May 31st, 2023, and show warehouse names with more products than the average products per warehouse.
+
+Pair 93:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers WHERE driver_id NOT IN (SELECT DISTINCT driver_id FROM deliveries WHERE delivery_date < '2023-07-01') GROUP BY driver_name HAVING AVG(delivery_distance) > (SELECT AVG(delivery_distance) FROM deliveries);
+NL Description: Calculate the average delivery distance for each driver who hasn't made deliveries before July 1st, 2023, and show driver names with an average distance greater than the overall average distance of all deliveries.
+
+Pair 94:
+SQL Query: SELECT customer_name, SUM(total_amount) FROM customers WHERE customer_id IN (SELECT customer_id FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-06-30') GROUP BY customer_name HAVING SUM(total_amount) > (SELECT AVG(total_amount) FROM orders);
+NL Description: Calculate the total amount spent by each customer who placed orders between January 1st, 2023, and June 30th, 2023, and show customer names with a total amount spent higher than the overall average total amount of orders.
+
+Pair 95:
+SQL Query: SELECT driver_name, COUNT(DISTINCT order_id) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE delivery_date BETWEEN '2023-04-01' AND '2023-09-30' GROUP BY driver_name HAVING COUNT(DISTINCT order_id) > (SELECT MAX(order_count) FROM (SELECT driver_id, COUNT(DISTINCT order_id) AS order_count FROM deliveries WHERE delivery_date BETWEEN '2023-01-01' AND '2023-03-31' GROUP BY driver_id) AS driver_order_counts);
+NL Description: Count the number of distinct orders delivered by each driver for deliveries made between April 1st, 2023, and September 30th, 2023, and show drivers with more orders than the maximum orders they've delivered between January 1st, 2023, and March 31st, 2023.
+
+Pair 96:
+SQL Query: SELECT supplier_name, COUNT(DISTINCT product_id) FROM suppliers LEFT JOIN products ON suppliers.supplier_id = products.supplier_id WHERE NOT EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id AND quantity > 10) GROUP BY supplier_name HAVING COUNT(DISTINCT product_id) > 5;
+NL Description: Count the number of distinct products supplied by each supplier for which there are no orders with quantities greater than 10, and show suppliers with more than 5 such products.
+
+Pair 97:
+SQL Query: SELECT warehouse_name, COUNT(DISTINCT product_id) FROM warehouses WHERE warehouse_id IN (SELECT DISTINCT destination_warehouse_id FROM shipments WHERE shipment_date > '2023-03-01') GROUP BY warehouse_name HAVING COUNT(DISTINCT product_id) > (SELECT MAX(products_per_warehouse) FROM (SELECT warehouse_id, COUNT(DISTINCT product_id) AS products_per_warehouse FROM warehouses GROUP BY warehouse_id) AS warehouse_counts);
+NL Description: Count the number of distinct products stored in each warehouse that has been used as the destination warehouse for shipments after March 1st, 2023, and show warehouse names with more products than the maximum products per warehouse.
+
+Pair 98:
+SQL Query: SELECT customer_name, COUNT(DISTINCT order_id) FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31' GROUP BY customer_name HAVING COUNT(DISTINCT order_id) > (SELECT MAX(orders_per_customer) FROM (SELECT customer_id, COUNT(DISTINCT order_id) AS orders_per_customer FROM orders GROUP BY customer_id) AS customer_order_counts);
+NL Description: Count the number of distinct orders placed by each customer for orders placed between January 1st, 2023, and December 31st, 2023, and show customers with more orders than the maximum orders per customer.
+
+Pair 99:
+SQL Query: SELECT supplier_name, COUNT(DISTINCT product_id) FROM suppliers JOIN products ON suppliers.supplier_id = products.supplier_id WHERE EXISTS (SELECT * FROM order_details WHERE order_details.product_id = products.product_id AND quantity >= 20) GROUP BY supplier_name HAVING COUNT(DISTINCT product_id) > (SELECT MAX(products_per_supplier) FROM (SELECT supplier_id, COUNT(DISTINCT product_id) AS products_per_supplier FROM products GROUP BY supplier_id) AS supplier_product_counts);
+NL Description: Count the number of distinct products supplied by each supplier for which there are orders with quantities greater than or equal to 20, and show suppliers with more products than the maximum products per supplier.
+
+Pair 100:
+SQL Query: SELECT warehouse_name, AVG(available_quantity) FROM warehouses JOIN products ON warehouses.warehouse_id = products.warehouse_id WHERE EXISTS (SELECT * FROM deliveries WHERE deliveries.product_id = products.product_id AND delivery_status = 'Delivered') GROUP BY warehouse_name HAVING AVG(available_quantity) > (SELECT MAX(available_quantity) FROM products);
+NL Description: Calculate the average available quantity of products for each warehouse that has received deliveries with a 'Delivered' status, and show warehouse names with an average available quantity higher than the maximum available quantity of products.
+
+Pair 101:
+SQL Query: SELECT * FROM customers;
+NL Description: Retrieve all customer records from the customers table.
+
+Pair 102:
+SQL Query: SELECT product_name, price FROM products;
+NL Description: Get the names and prices of all products from the products table.
+
+Pair 103:
+SQL Query: SELECT driver_name FROM drivers WHERE license_type = 'Class A';
+NL Description: Retrieve the names of drivers with a Class A license.
+
+Pair 104:
+SQL Query: SELECT COUNT(*) FROM orders;
+NL Description: Count the total number of orders in the orders table.
+
+Pair 105:
+SQL Query: SELECT AVG(delivery_distance) FROM deliveries;
+NL Description: Calculate the average delivery distance for all deliveries.
+
+Pair 106:
+SQL Query: SELECT DISTINCT product_category FROM products;
+NL Description: Retrieve the distinct product categories from the products table.
+
+Pair 107:
+SQL Query: SELECT driver_name, delivery_date FROM drivers JOIN deliveries ON drivers.driver_id = deliveries.driver_id;
+NL Description: Get the names of drivers along with their delivery dates from the drivers and deliveries tables.
+
+Pair 108:
+SQL Query: SELECT warehouse_name FROM warehouses WHERE capacity >= 1000;
+NL Description: Retrieve the names of warehouses with a capacity of at least 1000.
+
+Pair 109:
+SQL Query: SELECT MAX(total_amount) FROM orders;
+NL Description: Find the maximum total order amount from the orders table.
+
+Pair 110:
+SQL Query: SELECT driver_name, COUNT(*) FROM drivers LEFT JOIN deliveries ON drivers.driver_id = deliveries.driver_id GROUP BY driver_name;
+NL Description: Count the number of deliveries made by each driver, even for drivers who haven't made any deliveries, using a left join between drivers and deliveries.
+
+Pair 111:
+SQL Query: SELECT warehouse_name, location FROM warehouses;
+NL Description: Retrieve the names and locations of all warehouses.
+
+Pair 112:
+SQL Query: SELECT COUNT(DISTINCT product_id) FROM products;
+NL Description: Count the number of distinct products in the products table.
+
+Pair 113:
+SQL Query: SELECT driver_name, AVG(delivery_distance) FROM drivers JOIN deliveries ON drivers.driver_id = deliveries.driver_id GROUP BY driver_name;
+NL Description: Calculate the average delivery distance for each driver using a join between drivers and deliveries.
+
+Pair 114:
+SQL Query: SELECT SUM(quantity) FROM order_details;
+NL Description: Calculate the total quantity ordered across all order details.
+
+Pair 115:
+SQL Query: SELECT MAX(available_quantity) FROM products;
+NL Description: Find the maximum available quantity of products.
+
+Pair 116:
+SQL Query: SELECT supplier_name FROM suppliers WHERE country = 'USA';
+NL Description: Retrieve the names of suppliers based in the USA.
+
+Pair 117:
+SQL Query: SELECT AVG(price) FROM products WHERE product_category = 'Electronics';
+NL Description: Calculate the average price of electronics products.
+
+Pair 118:
+SQL Query: SELECT COUNT(*) FROM drivers;
+NL Description: Count the total number of drivers.
+
+Pair 119:
+SQL Query: SELECT MIN(total_amount) FROM orders;
+NL Description: Find the minimum total order amount from the orders table.
+
+Pair 120:
+SQL Query: SELECT driver_name, COUNT(*) FROM drivers JOIN deliveries ON drivers.driver_id = deliveries.driver_id WHERE delivery_date > '2023-01-01' GROUP BY driver_name;
+NL Description: Count the number of deliveries made by each driver after January 1st, 2023, using a join between drivers and deliveries.

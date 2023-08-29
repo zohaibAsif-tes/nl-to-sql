@@ -1,6 +1,6 @@
 from langchain import OpenAI, SQLDatabase, SQLDatabaseChain
 
-API_KEY = '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'
+API_KEY = 'OPENAI_API_KEY'
 
 # setup database
 
